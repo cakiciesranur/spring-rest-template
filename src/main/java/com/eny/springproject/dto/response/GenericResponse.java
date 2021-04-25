@@ -1,27 +1,16 @@
 package com.eny.springproject.dto.response;
 
 import com.eny.springproject.enums.ResponseType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.experimental.Accessors;
 
+@Data
 @Accessors(chain = true)
 public class GenericResponse<T> {
 
-    @Getter
-    @Setter
     private ResponseType responseType;
-
-    @Getter
-    @Setter
     private int errorCode;
-
-    @Getter
-    @Setter
     private String message;
-
-    @Getter
-    @Setter
     private T data;
 
     public GenericResponse(){

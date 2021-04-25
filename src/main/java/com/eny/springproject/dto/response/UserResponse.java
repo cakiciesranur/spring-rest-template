@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse extends BaseResponse {
+public class UserResponse {
     private String name;
     private String username;
     private String email;
     private String password;
-
 }

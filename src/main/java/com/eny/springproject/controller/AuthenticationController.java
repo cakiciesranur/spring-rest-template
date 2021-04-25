@@ -1,10 +1,13 @@
 package com.eny.springproject.controller;
 
 import com.eny.springproject.dto.request.LoginDto;
+import com.eny.springproject.dto.response.GenericResponse;
 import com.eny.springproject.service.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
@@ -16,8 +19,7 @@ public class AuthenticationController {
     private IAuthenticationService authenticationService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDto loginRequest) {
-        //TODO check validations responseentity ? ni gider
-        return ResponseEntity.ok(authenticationService.login(loginRequest.getUsernameOrEmail(), (loginRequest.getPassword())));
+    public GenericResponse authenticateUser(@Valid @RequestBody LoginDto loginRequest) {
+        return authenticationService.login(loginRequest.getUsernameOrEmail(), (loginRequest.getPassword()));
     }
 }
