@@ -77,9 +77,7 @@ public class UserServiceImpl implements IUserService {
 
         if (user.isPresent()) {
             UserEntity newEntity = user.get();
-            newEntity.setEmail(entity.getEmail());
             newEntity.setName(entity.getName());
-
             newEntity = userRepository.save(newEntity);
 
             return newEntity;
@@ -87,4 +85,5 @@ public class UserServiceImpl implements IUserService {
             throw new UserNotFound();
         }
     }
+
 }

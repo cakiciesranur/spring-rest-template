@@ -1,5 +1,6 @@
 package com.eny.springproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,13 +21,16 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonIgnore
     @Version
     private Integer version;
 
+    @JsonIgnore
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
+    @JsonIgnore
     @CreatedBy
     private String createdBy;
 
@@ -34,6 +38,7 @@ public abstract class BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
+    @JsonIgnore
     @LastModifiedBy
     private String lastModifiedBy;
 }
