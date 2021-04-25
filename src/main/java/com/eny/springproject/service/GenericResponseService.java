@@ -1,16 +1,12 @@
-/*
 package com.eny.springproject.service;
 
 import com.eny.springproject.constants.ErrorMessageConstant;
 import com.eny.springproject.dto.response.GenericResponse;
 import com.eny.springproject.enums.ResponseType;
+import com.eny.springproject.model.ErrorMessageEntity;
+import com.eny.springproject.service.error.ErrorMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-*/
-/**
- * created by kmluns
- **//*
 
 @Service
 public class GenericResponseService {
@@ -44,12 +40,12 @@ public class GenericResponseService {
     }
 
     public <T> GenericResponse createResponseWithError(int errorCode, T data) {
-        ErrorMessage errorMessage = errorMessageService.getErrorMessage(errorCode);
+        ErrorMessageEntity errorMessage = errorMessageService.getErrorMessage(errorCode);
         return createResponse(ResponseType.ERROR, errorMessage.getMessage(), data, errorCode);
     }
 
     public <T> GenericResponse createResponseWithError(int errorCode) {
-        ErrorMessage errorMessage = errorMessageService.getErrorMessage(errorCode);
+        ErrorMessageEntity errorMessage = errorMessageService.getErrorMessage(errorCode);
         return createResponse(ResponseType.ERROR, errorMessage.getMessage(), null, errorCode);
     }
 
@@ -60,7 +56,4 @@ public class GenericResponseService {
     public <T> GenericResponse createResponseWithRedirect(String relativeNewURL) {
         return createResponse(ResponseType.REDIRECT, relativeNewURL, null, ErrorMessageConstant.NO_ERROR);
     }
-
 }
-
-*/

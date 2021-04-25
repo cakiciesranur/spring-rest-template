@@ -1,8 +1,8 @@
 package com.eny.springproject.service;
 
-import com.eny.springproject.dto.response.JwtAuthenticationResponse;
+import com.eny.springproject.dto.response.GenericResponse;
 
 public interface IAuthenticationService {
 
-    JwtAuthenticationResponse login(String usernameOrEmail, String password);
+    GenericResponse login(String usernameOrEmail, String password);
 }

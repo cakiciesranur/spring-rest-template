@@ -5,8 +5,6 @@ import lombok.Data;
 
 @Data
 public class JwtAuthenticationResponse {
-    //TODO: tüm responseları base responsedan türet
-
     private String accessToken;
     private String tokenType = AuthenticationConstants.BEARER_TOKEN_TYPE;
 

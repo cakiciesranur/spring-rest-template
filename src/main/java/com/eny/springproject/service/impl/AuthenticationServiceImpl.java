@@ -1,7 +1,9 @@
 package com.eny.springproject.service.impl;
 
+import com.eny.springproject.dto.response.GenericResponse;
 import com.eny.springproject.dto.response.JwtAuthenticationResponse;
 import com.eny.springproject.security.JwtTokenProvider;
+import com.eny.springproject.service.GenericResponseService;
 import com.eny.springproject.service.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,8 +21,12 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     @Autowired
     private JwtTokenProvider tokenProvider;
 
+
+    @Autowired
+    private GenericResponseService genericResponseService;
+
     @Override
-    public JwtAuthenticationResponse login(String usernameOrEmail, String password) {
+    public GenericResponse login(String usernameOrEmail, String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(usernameOrEmail, password));
 
@@ -28,6 +34,6 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
 
         String jwt = tokenProvider.generateToken(authentication);
 
-        return new JwtAuthenticationResponse(jwt);
+        return genericResponseService.createResponseNoError("", new JwtAuthenticationResponse(jwt));
     }
 }

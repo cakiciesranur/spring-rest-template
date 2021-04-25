@@ -10,7 +10,6 @@ import com.eny.springproject.exception.UserNotFound;
 import com.eny.springproject.exception.UsernameAlreadyExistsException;
 import com.eny.springproject.model.RoleEntity;
 import com.eny.springproject.model.UserEntity;
-import com.eny.springproject.dto.response.UserResponse;
 import com.eny.springproject.repository.RoleRepository;
 import com.eny.springproject.repository.UserRespository;
 import com.eny.springproject.service.IUserService;
@@ -72,18 +71,18 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-    public UserResponse updateUser(UpdateUserDto dto) {
+    public UserEntity updateUser(UpdateUserDto dto) {
         UserEntity entity = userMapper.toEntity(dto);
-        Optional<UserEntity> employee = userRepository.findByUsernameOrEmail(entity.getUsername(), entity.getEmail());
+        Optional<UserEntity> user = userRepository.findByUsernameOrEmail(entity.getUsername(), entity.getEmail());
 
-        if (employee.isPresent()) {
-            UserEntity newEntity = employee.get();
+        if (user.isPresent()) {
+            UserEntity newEntity = user.get();
             newEntity.setEmail(entity.getEmail());
             newEntity.setName(entity.getName());
 
             newEntity = userRepository.save(newEntity);
 
-            return userMapper.toResource(newEntity);
+            return newEntity;
         } else {
             throw new UserNotFound();
         }
